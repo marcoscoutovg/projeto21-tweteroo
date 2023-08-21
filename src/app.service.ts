@@ -33,13 +33,9 @@ export class AppService {
 
     if (page < 1) {
       throw new HttpException('Informe uma página válida!', HttpStatus.BAD_REQUEST)
-    } else if (page >= 15) {
-      const tweets = this.tweets.slice(0, 15).reverse();
-      return tweets;
     }
-    const startIndex = (page - 1) * 15;
-    const endIndex = startIndex + 15;
-    return this.tweets.slice(startIndex, endIndex).reverse();
+    return this.tweets.slice(this.tweets.length - 15).reverse();
+
   }
 
   getTweetsByUser(username: string) {
